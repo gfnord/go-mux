@@ -3,14 +3,22 @@
 package main_test
 
 import (
-    "os"
-    "testing"
+	"os"
+	"testing"
+
+    // tom: for ensureTableExists
     "log"
+
+    // tom: for TestEmptyTable and next functions (no go get is required"
     "net/http"
+    // "net/url"
     "net/http/httptest"
     "strconv"
     "encoding/json"
     "bytes"
+    // "io/ioutil"
+
+	"."
 )
 
 var a main.App
