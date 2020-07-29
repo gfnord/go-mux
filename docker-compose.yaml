@@ -23,9 +23,9 @@ services:
     image: postgres
     ports:
       - "5432:5432"
-#    environment:
-#      POSTGRES_USER: ${APP_DB_USERNAME} 
-#      POSTGRES_PASSWORD: ${APP_DB_PASSWORD}
-#      POSTGRES_DB: ${APP_DB_NAME}
+    environment:
+      POSTGRES_USER: ${APP_DB_USERNAME} 
+      POSTGRES_PASSWORD: ${APP_DB_PASSWORD}
+      POSTGRES_DB: ${APP_DB_NAME}
 #    volumes:
 #      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
