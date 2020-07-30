@@ -28,7 +28,7 @@ COPY .env .
 RUN go build -o go-mux.bin .
 
 # Expose port 8080 to the outside world
-EXPOSE 8020
+EXPOSE 8010
 
 # Run the executable
 CMD ["./go-mux.bin"]

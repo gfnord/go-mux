@@ -24,7 +24,7 @@ type App struct {
 // added "sslmode=disable" to connection string
 func (a *App) Initialize(user, password, dbname string) {
 	connectionString :=
-		fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
+		fmt.Sprintf("host=go-mux-db.default.svc:5432 user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
 
 	var err error
 	a.DB, err = sql.Open("postgres", connectionString)

@@ -36,6 +36,13 @@ $ ./go-mux-api.bin
 
 Server is listening on localhost:8010
 
+- GKE Setup
+
+Create the regional IP for the LoadBalancer
+``` bash
+$ gcloud compute addresses create go-mux-api-ip --region us-west1
+```
+
 ## Test
 
 ```bash

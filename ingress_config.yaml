@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: go-mux-api-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "go-mux-api-ip"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: goapi.firewalkers.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: go-mux-api-lb
+          servicePort: go-mux-port

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-mux
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-mux
+  template:
+    metadata:
+      labels:
+        app: go-mux
+    spec:
+      containers:
+      - name: go-mux-api
+        image: gcr.io/nobrega-project001/go-mux-api:v5
+        ports:
+        - containerPort: 8010
+      - name: gp-mux-db
+        image: gcr.io/nobrega-project001/go-mux-db:v5
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: 123password
