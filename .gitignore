@@ -2,3 +2,4 @@ go-mux-api.bin
 mod/
 vendor/
 .env
+data/
