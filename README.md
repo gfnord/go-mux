@@ -12,6 +12,7 @@ $ source .env
 ```
 
 - Run PostgreSQL container and create the databases or use docker-compose
+
 Docker
 ``` bash
 $ docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=${APP_DB_PASSWORD} -d postgres
