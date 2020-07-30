@@ -11,13 +11,19 @@ $ $EDITOR .env
 $ source .env
 ```
 
-- Run PostgreSQL container and create the databases
+- Run PostgreSQL container and create the databases or use docker-compose
+Docker
 ``` bash
 $ docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=${APP_DB_PASSWORD} -d postgres
 $ echo "SELECT 'CREATE DATABASE ${APP_DB_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${APP_DB_NAME}')\gexec" | \
 psql "user=${APP_DB_USERNAME} password=${APP_DB_PASSWORD} host=127.0.0.1 port=5432"
 $ echo "SELECT 'CREATE DATABASE ${TEST_DB_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${TEST_DB_NAME}')\gexec" | \
 psql "user=${TEST_DB_USERNAME} password=${TEST_DB_PASSWORD} host=127.0.0.1 port=5432"
+```
+Docker-compose
+``` bash
+$ docker-compose build
+$ docker-compose up -d
 ```
 - Build and run:
 
