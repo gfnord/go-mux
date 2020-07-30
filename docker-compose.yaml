@@ -6,26 +6,22 @@ services:
     env_file:
       - .env
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./
+      dockerfile: ./api/Dockerfile
     container_name: go-mux-api
-    build: ./
     ports:
       - "8020:8020"
-#    command: /server
     depends_on:
       - postgres-db
 
   postgres-db:
     env_file:
       - .env
+    build:
+      context: ./postgres-db
+      dockerfile: Dockerfile
     container_name: api-db
-    image: postgres
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: ${APP_DB_USERNAME} 
-      POSTGRES_PASSWORD: ${APP_DB_PASSWORD}
-      POSTGRES_DB: ${APP_DB_NAME}
-#    volumes:
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    volumes:
+      - ./data:/var/lib/postgresql/data

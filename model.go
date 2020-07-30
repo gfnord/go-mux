@@ -4,10 +4,9 @@ package main
 
 import (
 	"database/sql"
-    // tom: errors is removed once functions are implemented
+	// tom: errors is removed once functions are implemented
 	// "errors"
 )
-
 
 // tom: add backticks to json
 type product struct {

@@ -4,20 +4,13 @@ package main
 
 import (
 	"database/sql"
-
-    // tom: for Initialize
-    "fmt"
-    "log"
-
-    // tom: for route handlers
-    "net/http"
-    "encoding/json"
-    "strconv"
-
-    // tom: go get required
+	"fmt"
+	"log"
+	"encoding/json"
+	"net/http"
+	"strconv"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
-
 )
 
 type App struct {
@@ -25,10 +18,10 @@ type App struct {
 	DB     *sql.DB
 }
 
-// tom: initial function is empty, it's filled afterwards
+// initial function is empty, it's filled afterwards
 // func (a *App) Initialize(user, password, dbname string) { }
 
-// tom: added "sslmode=disable" to connection string
+// added "sslmode=disable" to connection string
 func (a *App) Initialize(user, password, dbname string) {
 	connectionString :=
 		fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
@@ -41,18 +34,18 @@ func (a *App) Initialize(user, password, dbname string) {
 
 	a.Router = mux.NewRouter()
 
-    // tom: this line is added after initializeRoutes is created later on
-    a.initializeRoutes()
+	// this line is added after initializeRoutes is created later on
+	a.initializeRoutes()
 }
 
-// tom: initial version
+// initial version
 // func (a *App) Run(addr string) { }
 // improved version
 func (a *App) Run(addr string) {
 	log.Fatal(http.ListenAndServe(":8010", a.Router))
 }
 
-// tom: these are added later
+// these are added later
 func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
@@ -86,7 +79,6 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.WriteHeader(code)
 	w.Write(response)
 }
-
 
 func (a *App) getProducts(w http.ResponseWriter, r *http.Request) {
 	count, _ := strconv.Atoi(r.FormValue("count"))
@@ -166,7 +158,6 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 
 	respondWithJSON(w, http.StatusOK, map[string]string{"result": "success"})
 }
-
 
 func (a *App) initializeRoutes() {
 	a.Router.HandleFunc("/products", a.getProducts).Methods("GET")

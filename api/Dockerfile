@@ -15,13 +15,14 @@ LABEL maintainer="Gustavo Nobrega <gustavofn@gmail.com>"
 WORKDIR /app
 
 # Copy go mod and sum files
-COPY go.mod go.sum ./
+#COPY go.mod go.sum ./
 
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
-RUN go mod download
+# Install de dependencies
+RUN go get -u github.com/gorilla/mux github.com/lib/pq
 
 # Copy the source from the current directory to the Working Directory inside the container
-COPY . .
+COPY *.go ./
+COPY .env .
 
 # Build the Go app
 RUN go build -o go-mux.bin .

@@ -11,6 +11,14 @@ $ $EDITOR .env
 $ source .env
 ```
 
+- Run PostgreSQL container and create the databases
+``` bash
+$ docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=${APP_DB_PASSWORD} -d postgres
+$ echo "SELECT 'CREATE DATABASE ${APP_DB_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${APP_DB_NAME}')\gexec" | \
+psql "user=${APP_DB_USERNAME} password=${APP_DB_PASSWORD} host=127.0.0.1 port=5432"
+$ echo "SELECT 'CREATE DATABASE ${TEST_DB_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${TEST_DB_NAME}')\gexec" | \
+psql "user=${TEST_DB_USERNAME} password=${TEST_DB_PASSWORD} host=127.0.0.1 port=5432"
+```
 - Build and run:
 
 ```bash
@@ -26,19 +34,19 @@ Server is listening on localhost:8010
 ```bash
 $ go test -v
 === RUN   TestEmptyTable
---- PASS: TestEmptyTable (0.00s)
+--- PASS: TestEmptyTable (0.01s)
 === RUN   TestGetNonExistentProduct
 --- PASS: TestGetNonExistentProduct (0.00s)
 === RUN   TestCreateProduct
---- PASS: TestCreateProduct (0.00s)
+--- PASS: TestCreateProduct (0.01s)
 === RUN   TestGetProduct
---- PASS: TestGetProduct (0.00s)
+--- PASS: TestGetProduct (0.01s)
 === RUN   TestUpdateProduct
 --- PASS: TestUpdateProduct (0.01s)
 === RUN   TestDeleteProduct
 --- PASS: TestDeleteProduct (0.01s)
 PASS
-ok      _/home/tom/r/go-mux-api 0.034s
+ok      _/home/gustavo/GIT/gfnord/go-mux        0.051s
 ```
 
 ## License

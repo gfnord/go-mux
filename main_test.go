@@ -5,19 +5,12 @@ package main_test
 import (
 	"os"
 	"testing"
-
-    // tom: for ensureTableExists
-    "log"
-
-    // tom: for TestEmptyTable and next functions (no go get is required"
-    "net/http"
-    // "net/url"
-    "net/http/httptest"
-    "strconv"
-    "encoding/json"
-    "bytes"
-    // "io/ioutil"
-
+	"log"
+	"net/http"
+	"bytes"
+	"encoding/json"
+	"net/http/httptest"
+	"strconv"
 	"."
 )
 
@@ -57,7 +50,6 @@ const tableCreationQuery = `CREATE TABLE IF NOT EXISTS products
     price NUMERIC(10,2) NOT NULL DEFAULT 0.00,
     CONSTRAINT products_pkey PRIMARY KEY (id)
 )`
-
 
 // tom: next functions added later, these require more modules: net/http net/http/httptest
 func TestEmptyTable(t *testing.T) {
@@ -106,9 +98,9 @@ func TestCreateProduct(t *testing.T) {
 
 	clearTable()
 
-    var jsonStr = []byte(`{"name":"test product", "price": 11.22}`)
-    req, _ := http.NewRequest("POST", "/product", bytes.NewBuffer(jsonStr))
-    req.Header.Set("Content-Type", "application/json")
+	var jsonStr = []byte(`{"name":"test product", "price": 11.22}`)
+	req, _ := http.NewRequest("POST", "/product", bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
 
 	response := executeRequest(req)
 	checkResponseCode(t, http.StatusCreated, response.Code)
@@ -130,7 +122,6 @@ func TestCreateProduct(t *testing.T) {
 		t.Errorf("Expected product ID to be '1'. Got '%v'", m["id"])
 	}
 }
-
 
 func TestGetProduct(t *testing.T) {
 	clearTable()
@@ -162,9 +153,9 @@ func TestUpdateProduct(t *testing.T) {
 	var originalProduct map[string]interface{}
 	json.Unmarshal(response.Body.Bytes(), &originalProduct)
 
-    var jsonStr = []byte(`{"name":"test product - updated name", "price": 11.22}`)
-    req, _ = http.NewRequest("PUT", "/product/1", bytes.NewBuffer(jsonStr))
-    req.Header.Set("Content-Type", "application/json")
+	var jsonStr = []byte(`{"name":"test product - updated name", "price": 11.22}`)
+	req, _ = http.NewRequest("PUT", "/product/1", bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
 
 	// req, _ = http.NewRequest("PUT", "/product/1", bytes.NewBuffer(payload))
 	response = executeRequest(req)
