@@ -22,10 +22,9 @@ type App struct {
 // func (a *App) Initialize(user, password, dbname string) { }
 
 // added "sslmode=disable" to connection string
-func (a *App) Initialize(user, password, dbname string) {
+func (a *App) Initialize(port, user, password, dbname, host string) {
 	connectionString :=
-		//fmt.Sprintf("host=go-mux-db.default.svc:5432 user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
-		fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
+		fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
 	var err error
 	a.DB, err = sql.Open("postgres", connectionString)
@@ -160,7 +159,12 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, map[string]string{"result": "success"})
 }
 
+func homeLink(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Welcome to go-mux api")
+}
+
 func (a *App) initializeRoutes() {
+        a.Router.HandleFunc("/", homeLink).Methods("GET")
 	a.Router.HandleFunc("/products", a.getProducts).Methods("GET")
 	a.Router.HandleFunc("/product", a.createProduct).Methods("POST")
 	a.Router.HandleFunc("/product/{id:[0-9]+}", a.getProduct).Methods("GET")

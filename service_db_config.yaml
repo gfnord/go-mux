@@ -4,7 +4,7 @@ metadata:
   name: go-mux-db
 spec:
   selector:
-    app: go-mux-db
+    app: go-mux
   ports:
     - name: go-mux-db-port
       protocol: TCP

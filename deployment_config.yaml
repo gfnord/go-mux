@@ -14,13 +14,26 @@ spec:
     spec:
       containers:
       - name: go-mux-api
-        image: gcr.io/nobrega-project001/go-mux-api:v5
+        image: gcr.io/nobrega-project001/go-mux-api:v7
         ports:
         - containerPort: 8010
-      - name: gp-mux-db
-        image: gcr.io/nobrega-project001/go-mux-db:v5
+        env:
+        - name: APP_DB_USERNAME
+          value: postgres
+        - name: APP_DB_PASSWORD
+          value: 123password
+        - name: APP_DB_NAME
+          value: appdb
+        - name: APP_DB_HOST
+          value: go-mux-db.default.svc
+        - name: APP_DB_PORT
+          value: "5432"
+      - name: go-mux-db
+        image: gcr.io/nobrega-project001/go-mux-db:v7
         ports:
         - containerPort: 5432
         env:
         - name: POSTGRES_PASSWORD
           value: 123password
+        - name: POSTGRES_DB
+          value: appdb
