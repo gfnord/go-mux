@@ -14,3 +14,11 @@ spec:
         backend:
           serviceName: go-mux-api-lb
           servicePort: http
+      - path: /product
+        backend:
+          serviceName: go-mux-api-lb
+          servicePort: http
+      - path: /products
+        backend:
+          serviceName: go-mux-api-lb
+          servicePort: http
