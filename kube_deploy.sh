@@ -8,6 +8,6 @@ sed  "s/<INSTANCE_CONNECTION_NAME>/$connectionName/g" .deployment_config_temp1.y
 rm -f .deployment_config_temp1.yaml
 
 # start the deployment
-#kubectl apply -f deployment_config.yaml
-#kubectl apply -f service_go-api_config.yaml 
-#kubectl apply -f ingress_config.yaml
+kubectl apply -f deployment_config.yaml
+kubectl apply -f service_go-api_config.yaml 
+kubectl apply -f ingress_config.yaml

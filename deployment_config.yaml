@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: go-mux-api
-        image: gcr.io/firewalkers/go-mux-api:v21
+        image: gcr.io/firewalkers/go-mux-api:v24
         ports:
         - containerPort: 8010
         env:
