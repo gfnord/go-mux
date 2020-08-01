@@ -3,3 +3,4 @@ mod/
 vendor/
 .env
 data/
+sa-account.json

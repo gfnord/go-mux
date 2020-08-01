@@ -4,7 +4,7 @@ metadata:
   name: go-mux-api-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.global-static-ip-name: "go-mux-api-ip-global"
+    kubernetes.io/ingress.global-static-ip-name: "go-mux-api-ip-ing"
 spec:
   rules:
   - host: api.firewalkers.xyz

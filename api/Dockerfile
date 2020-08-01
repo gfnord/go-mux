@@ -18,7 +18,7 @@ WORKDIR /app
 #COPY go.mod go.sum ./
 
 # Install de dependencies
-RUN go get -u github.com/gorilla/mux github.com/lib/pq
+RUN go get -u github.com/gorilla/mux github.com/go-sql-driver/mysql
 
 # Copy the source from the current directory to the Working Directory inside the container
 COPY *.go ./

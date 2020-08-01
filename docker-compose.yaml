@@ -11,17 +11,3 @@ services:
     container_name: go-mux-api
     ports:
       - "8010:8010"
-    depends_on:
-      - go-mux-db
-
-  go-mux-db:
-    env_file:
-      - .env
-    build:
-      context: ./postgres-db
-      dockerfile: Dockerfile
-    container_name: go-mux-db
-    ports:
-      - "5432:5432"
-#    volumes:
-#      - ./data:/var/lib/postgresql/data

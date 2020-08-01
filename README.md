@@ -11,6 +11,12 @@ $ $EDITOR .env
 $ source .env
 ```
 
+- Create the public IPs, one for loadbalancer and another for ingress
+```bash
+gcloud compute addresses create go-mux-api-ip-ing --global
+gcloud compute addresses create go-mux-api-ip-lb --region us-west1
+```
+
 - Run PostgreSQL container and create the databases or use docker-compose
 
  - Docker
@@ -29,7 +35,7 @@ $ docker-compose up -d
 - Build and run:
 
 ```bash
-$ go get -u github.com/gorilla/mux github.com/lib/pq
+$ go get -u github.com/gorilla/mux github.com/go-sql-driver/mysql
 $ go build -o go-mux-api.bin
 $ ./go-mux-api.bin
 ```

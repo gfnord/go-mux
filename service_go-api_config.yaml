@@ -4,7 +4,7 @@ metadata:
   name: go-mux-api-lb
 spec:
   type: LoadBalancer
-  loadBalancerIP: 34.82.210.35
+  loadBalancerIP: 34.105.121.217
   selector:
     app: go-mux
   ports:

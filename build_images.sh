@@ -5,10 +5,7 @@ echo Current Version: $VERSION
 
 docker-compose build
 
-docker tag go-mux_go-mux-api:latest gcr.io/nobrega-project001/go-mux-api:v$VERSION
-docker push gcr.io/nobrega-project001/go-mux-api:v$VERSION
-
-docker tag go-mux_go-mux-db:latest gcr.io/nobrega-project001/go-mux-db:v$VERSION
-docker push gcr.io/nobrega-project001/go-mux-db:v$VERSION
+docker tag go-mux_go-mux-api:latest gcr.io/firewalkers/go-mux-api:v$VERSION
+docker push gcr.io/firewalkers/go-mux-api:v$VERSION
 
 echo $VERSION > .current_version
